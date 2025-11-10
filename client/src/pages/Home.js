@@ -117,14 +117,21 @@ const Home = () => {
                   <Link
                     key={category}
                     to={`/category/${encodeURIComponent(category)}`}
-                    className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden flex-shrink-0 w-32 sm:w-40"
+                    className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden flex-shrink-0 w-36 sm:w-44"
                   >
-                    <div className="w-full h-24 sm:h-32 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden relative">
+                    <div className="w-full aspect-[4/3] bg-gray-50 overflow-hidden relative">
                       <img
                         src={getCategoryImage(category)}
                         alt={category}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        style={{ minHeight: '100%' }}
+                        onError={(e) => {
+                          console.error('Failed to load category image:', getCategoryImage(category), 'for category:', category);
+                          // Keep the image but show error in console
+                          e.target.style.opacity = '0.5';
+                        }}
+                        onLoad={() => {
+                          console.log('Successfully loaded:', getCategoryImage(category));
+                        }}
                       />
                     </div>
                     <div className="p-3 text-center">
