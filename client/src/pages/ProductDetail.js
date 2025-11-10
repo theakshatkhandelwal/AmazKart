@@ -15,23 +15,23 @@ const ProductDetail = () => {
   const [selectedImage, setSelectedImage] = useState(0);
 
   useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await getProduct(id);
+        setProduct(response.data);
+        setSelectedImage(0);
+      } catch (err) {
+        setError('Product not found');
+        console.error('Error fetching product:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProduct();
   }, [id]);
-
-  const fetchProduct = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await getProduct(id);
-      setProduct(response.data);
-      setSelectedImage(0);
-    } catch (err) {
-      setError('Product not found');
-      console.error('Error fetching product:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleAddToCart = () => {
     if (product && product.stock > 0) {
@@ -62,15 +62,15 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-12">
       <div className="container mx-auto px-4">
         <button
           onClick={() => navigate(-1)}
-          className="mb-6 text-primary-600 hover:text-primary-700 flex items-center space-x-2"
+          className="mb-8 text-primary-600 hover:text-primary-700 flex items-center space-x-2 font-bold group transition-all duration-200"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
+            className="h-6 w-6 group-hover:-translate-x-1 transition-transform"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -78,14 +78,14 @@ const ProductDetail = () => {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={2.5}
               d="M15 19l-7-7 7-7"
             />
           </svg>
-          <span>Back</span>
+          <span>Back to Products</span>
         </button>
 
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
+        <div className="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden border border-gray-200/50">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-8 md:p-12">
             {/* Image Gallery */}
             <div>

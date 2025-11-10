@@ -1,0 +1,48 @@
+═══════════════════════════════════════════════════════
+  YOUR MONGODB CONNECTION STRING FOR RENDER
+═══════════════════════════════════════════════════════
+
+Copy this EXACT string to Render → Environment → MONGODB_URI:
+
+mongodb+srv://akshat111bkg_db_user:Akshat%40cmrit@amazkart.9fquq4i.mongodb.net/amazkart?retryWrites=true&w=majority
+
+═══════════════════════════════════════════════════════
+  BREAKDOWN:
+═══════════════════════════════════════════════════════
+
+Protocol:     mongodb+srv://
+Username:     akshat111bkg_db_user
+Password:     Akshat%40cmrit  (Akshat@cmrit with @ encoded as %40)
+Cluster:      amazkart.9fquq4i.mongodb.net
+Database:     amazkart
+Options:      ?retryWrites=true&w=majority
+
+═══════════════════════════════════════════════════════
+  STEPS TO UPDATE IN RENDER:
+═══════════════════════════════════════════════════════
+
+1. Go to: https://dashboard.render.com
+2. Click on your service: amazkart-backend
+3. Click "Environment" tab (top navigation)
+4. Find "MONGODB_URI" in the list
+5. Click on it to edit
+6. Delete the old value completely
+7. Paste the connection string above
+8. Click "Save Changes"
+9. Wait 5-10 minutes for automatic redeployment
+10. Check logs - should see "✅ Connected to MongoDB"
+
+═══════════════════════════════════════════════════════
+  WHY @ IS ENCODED AS %40:
+═══════════════════════════════════════════════════════
+
+In URLs, special characters have special meanings:
+- @ separates username:password from host
+- So if your password contains @, it must be encoded as %40
+- Otherwise MongoDB thinks the @ is part of the URL structure
+
+Your password: Akshat@cmrit
+Encoded:      Akshat%40cmrit
+
+═══════════════════════════════════════════════════════
+
