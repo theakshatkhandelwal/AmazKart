@@ -99,13 +99,14 @@ const Home = () => {
                 if (categoryProducts.length === 0) return null;
                 
                 const getCategoryImage = (cat) => {
+                  // Map category names to image filenames (using hyphenated names)
                   const imageMap = {
                     'Electronics': '/electronics.jpg',
                     'Fashion': '/fashion.jpg',
-                    'Home & Kitchen': '/home & kitchen.jpg',
-                    'Beauty & Personal Care': '/beauty and personal care.jpg',
-                    'Sports & Fitness': '/sports and fitness.jpg',
-                    'Stationery & Office Supplies': '/office and stationery suppliers.jpg'
+                    'Home & Kitchen': '/home-kitchen.jpg',
+                    'Beauty & Personal Care': '/beauty-personal-care.jpg',
+                    'Sports & Fitness': '/sports-fitness.jpg',
+                    'Stationery & Office Supplies': '/office-stationery-supplies.jpg'
                   };
                   return imageMap[cat] || '/electronics.jpg';
                 };
@@ -121,8 +122,11 @@ const Home = () => {
                         src={getCategoryImage(category)}
                         alt={category}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
                         onError={(e) => {
-                          e.target.src = '/electronics.jpg'; // Fallback image
+                          // If image fails to load, show a placeholder
+                          e.target.onerror = null;
+                          e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23e5e7eb" width="100" height="100"/%3E%3Ctext fill="%239ca3af" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3ENo Image%3C/text%3E%3C/svg%3E';
                         }}
                       />
                     </div>
