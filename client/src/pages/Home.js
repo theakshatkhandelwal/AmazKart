@@ -93,69 +93,44 @@ const Home = () => {
                 View All Categories →
               </Link>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
               {['Electronics', 'Fashion', 'Home & Kitchen', 'Beauty & Personal Care', 'Sports & Fitness', 'Stationery & Office Supplies'].map((category) => {
                 const categoryProducts = getProductsByCategory(category);
                 if (categoryProducts.length === 0) return null;
                 
-                const getCategoryBg = (cat) => {
-                  if (cat === 'Electronics') return 'bg-gradient-to-br from-blue-500 to-blue-600';
-                  if (cat === 'Fashion') return 'bg-gradient-to-br from-pink-500 to-pink-600';
-                  if (cat === 'Home & Kitchen') return 'bg-gradient-to-br from-orange-500 to-orange-600';
-                  if (cat === 'Beauty & Personal Care') return 'bg-gradient-to-br from-purple-500 to-purple-600';
-                  if (cat === 'Sports & Fitness') return 'bg-gradient-to-br from-green-500 to-green-600';
-                  if (cat === 'Stationery & Office Supplies') return 'bg-gradient-to-br from-yellow-500 to-yellow-600';
-                  return 'bg-gradient-to-br from-gray-500 to-gray-600';
-                };
-                
-                const getCategoryIcon = (cat) => {
-                  if (cat === 'Electronics') return (
-                    <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                    </svg>
-                  );
-                  if (cat === 'Fashion') return (
-                    <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                  );
-                  if (cat === 'Home & Kitchen') return (
-                    <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                  );
-                  if (cat === 'Beauty & Personal Care') return (
-                    <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  );
-                  if (cat === 'Sports & Fitness') return (
-                    <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  );
-                  if (cat === 'Stationery & Office Supplies') return (
-                    <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  );
-                  return null;
+                const getCategoryImage = (cat) => {
+                  const imageMap = {
+                    'Electronics': '/electronics.jpg',
+                    'Fashion': '/fashion.jpg',
+                    'Home & Kitchen': '/home & kitchen.jpg',
+                    'Beauty & Personal Care': '/beauty and personal care.jpg',
+                    'Sports & Fitness': '/sports and fitness.jpg',
+                    'Stationery & Office Supplies': '/office and stationery suppliers.jpg'
+                  };
+                  return imageMap[cat] || '/electronics.jpg';
                 };
                 
                 return (
                   <Link
                     key={category}
                     to={`/category/${encodeURIComponent(category)}`}
-                    className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden"
+                    className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden flex-shrink-0 w-32 sm:w-40"
                   >
-                    <div className={`aspect-square ${getCategoryBg(category)} p-6 flex flex-col items-center justify-center`}>
-                      {getCategoryIcon(category)}
+                    <div className="w-full h-24 sm:h-32 bg-gray-100 overflow-hidden">
+                      <img
+                        src={getCategoryImage(category)}
+                        alt={category}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => {
+                          e.target.src = '/electronics.jpg'; // Fallback image
+                        }}
+                      />
                     </div>
-                    <div className="p-4">
-                      <h3 className="font-bold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors">
+                    <div className="p-3 text-center">
+                      <h3 className="font-semibold text-sm text-gray-900 mb-1 group-hover:text-primary-600 transition-colors line-clamp-2">
                         {category}
                       </h3>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-xs text-gray-600">
                         {categoryProducts.length} {categoryProducts.length === 1 ? 'item' : 'items'}
                       </p>
                     </div>
