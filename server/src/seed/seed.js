@@ -107,6 +107,165 @@ const sampleProducts = [
     ],
     category: 'Electronics',
     stock: 8
+  },
+  // Beauty & Personal Care
+  {
+    name: 'L\'Oréal Paris Skincare Set',
+    slug: 'loreal-skincare-set',
+    description: 'Complete skincare routine with cleanser, toner, and moisturizer. Formulated with hyaluronic acid and vitamin C for radiant, hydrated skin. Suitable for all skin types.',
+    shortDescription: 'Complete skincare set with cleanser, toner, and moisturizer',
+    price: 2499,
+    images: [
+      'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1571875257727-256c39da42af?w=800&h=600&fit=crop'
+    ],
+    category: 'Beauty & Personal Care',
+    stock: 52
+  },
+  {
+    name: 'Maybelline Fit Me Foundation',
+    slug: 'maybelline-fit-me-foundation',
+    description: 'Matte and poreless foundation that fits all skin tones. Lightweight formula provides natural coverage that lasts all day. Available in 40 shades.',
+    shortDescription: 'Matte foundation with natural coverage for all skin tones',
+    price: 599,
+    images: [
+      'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&h=600&fit=crop'
+    ],
+    category: 'Beauty & Personal Care',
+    stock: 78
+  },
+  {
+    name: 'Dove Men+Care Body Wash',
+    slug: 'dove-mencare-body-wash',
+    description: 'Hydrating body wash specially formulated for men. Contains micro-moisture technology that activates in the shower. Refreshing scent and 24-hour care.',
+    shortDescription: 'Hydrating body wash with micro-moisture technology for men',
+    price: 399,
+    images: [
+      'https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=800&h=600&fit=crop'
+    ],
+    category: 'Beauty & Personal Care',
+    stock: 95
+  },
+  {
+    name: 'CeraVe Moisturizing Cream',
+    slug: 'cerave-moisturizing-cream',
+    description: 'Daily moisturizing cream with ceramides and hyaluronic acid. Developed with dermatologists for normal to dry skin. Non-comedogenic and fragrance-free.',
+    shortDescription: 'Daily moisturizing cream with ceramides and hyaluronic acid',
+    price: 899,
+    images: [
+      'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&h=600&fit=crop'
+    ],
+    category: 'Beauty & Personal Care',
+    stock: 61
+  },
+  // Sports & Fitness
+  {
+    name: 'Yoga Mat Premium',
+    slug: 'yoga-mat-premium',
+    description: 'Non-slip yoga mat with extra cushioning for comfort. Eco-friendly TPE material, lightweight and portable. Perfect for yoga, pilates, and floor exercises.',
+    shortDescription: 'Non-slip yoga mat with extra cushioning and eco-friendly material',
+    price: 2499,
+    images: [
+      'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=600&fit=crop'
+    ],
+    category: 'Sports & Fitness',
+    stock: 43
+  },
+  {
+    name: 'Adjustable Dumbbells Set',
+    slug: 'adjustable-dumbbells-set',
+    description: 'Space-saving adjustable dumbbells with weight range of 5-25kg per dumbbell. Quick-change weight system. Perfect for home gym workouts and strength training.',
+    shortDescription: 'Adjustable dumbbells with quick-change weight system (5-25kg)',
+    price: 14999,
+    images: [
+      'https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&h=600&fit=crop'
+    ],
+    category: 'Sports & Fitness',
+    stock: 18
+  },
+  {
+    name: 'Nike Dri-FIT Training T-Shirt',
+    slug: 'nike-dri-fit-training-tshirt',
+    description: 'Moisture-wicking training t-shirt with Dri-FIT technology. Breathable fabric keeps you dry and comfortable during workouts. Available in multiple colors.',
+    shortDescription: 'Moisture-wicking training t-shirt with Dri-FIT technology',
+    price: 2499,
+    images: [
+      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=600&fit=crop'
+    ],
+    category: 'Sports & Fitness',
+    stock: 56
+  },
+  {
+    name: 'Resistance Bands Set',
+    slug: 'resistance-bands-set',
+    description: 'Set of 5 resistance bands with different resistance levels. Includes door anchor, ankle straps, and carrying bag. Perfect for strength training and physical therapy.',
+    shortDescription: 'Set of 5 resistance bands with accessories for strength training',
+    price: 1299,
+    images: [
+      'https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop'
+    ],
+    category: 'Sports & Fitness',
+    stock: 72
+  },
+  // Stationery & Office Supplies
+  {
+    name: 'Moleskine Classic Notebook',
+    slug: 'moleskine-classic-notebook',
+    description: 'Hardcover notebook with acid-free paper and rounded corners. Expandable inner pocket and bookmark ribbon. Perfect for journaling, note-taking, and sketching.',
+    shortDescription: 'Hardcover notebook with acid-free paper and expandable pocket',
+    price: 1899,
+    images: [
+      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&h=600&fit=crop'
+    ],
+    category: 'Stationery & Office Supplies',
+    stock: 87
+  },
+  {
+    name: 'Parker Fountain Pen Set',
+    slug: 'parker-fountain-pen-set',
+    description: 'Premium fountain pen set with elegant design and smooth writing experience. Includes ink converter and gift box. Perfect for professionals and writing enthusiasts.',
+    shortDescription: 'Premium fountain pen set with ink converter and gift box',
+    price: 3499,
+    images: [
+      'https://images.unsplash.com/photo-1583484963886-d5ad2f0b5b68?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop'
+    ],
+    category: 'Stationery & Office Supplies',
+    stock: 34
+  },
+  {
+    name: 'Stapler with Remover',
+    slug: 'stapler-with-remover',
+    description: 'Heavy-duty stapler with built-in staple remover. Can staple up to 30 sheets. Durable metal construction with ergonomic design for comfortable use.',
+    shortDescription: 'Heavy-duty stapler with built-in remover (up to 30 sheets)',
+    price: 499,
+    images: [
+      'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1532619675605-1ede6c9ed2d7?w=800&h=600&fit=crop'
+    ],
+    category: 'Stationery & Office Supplies',
+    stock: 112
+  },
+  {
+    name: 'File Organizer Set',
+    slug: 'file-organizer-set',
+    description: 'Set of 5 color-coded file folders with tabs. Made from durable cardstock. Perfect for organizing documents, papers, and important files in office or home.',
+    shortDescription: 'Set of 5 color-coded file folders with tabs for organizing',
+    price: 799,
+    images: [
+      'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop'
+    ],
+    category: 'Stationery & Office Supplies',
+    stock: 65
   }
 ];
 

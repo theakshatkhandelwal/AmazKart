@@ -41,14 +41,13 @@ const Home = () => {
       .slice(0, 6);
   };
 
-  // Get electronics
+  // Get products by category
   const electronics = getProductsByCategory('Electronics');
-  
-  // Get fashion
   const fashion = getProductsByCategory('Fashion');
-  
-  // Get home & kitchen
   const homeKitchen = getProductsByCategory('Home & Kitchen');
+  const beauty = getProductsByCategory('Beauty & Personal Care');
+  const sports = getProductsByCategory('Sports & Fitness');
+  const stationery = getProductsByCategory('Stationery & Office Supplies');
 
   if (loading && allProducts.length === 0) {
     return <Loader />;
@@ -95,7 +94,7 @@ const Home = () => {
               </Link>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-              {['Electronics', 'Fashion', 'Home & Kitchen'].map((category) => {
+              {['Electronics', 'Fashion', 'Home & Kitchen', 'Beauty & Personal Care', 'Sports & Fitness', 'Stationery & Office Supplies'].map((category) => {
                 const categoryProducts = getProductsByCategory(category);
                 if (categoryProducts.length === 0) return null;
                 
@@ -103,7 +102,44 @@ const Home = () => {
                   if (cat === 'Electronics') return 'bg-gradient-to-br from-blue-500 to-blue-600';
                   if (cat === 'Fashion') return 'bg-gradient-to-br from-pink-500 to-pink-600';
                   if (cat === 'Home & Kitchen') return 'bg-gradient-to-br from-orange-500 to-orange-600';
+                  if (cat === 'Beauty & Personal Care') return 'bg-gradient-to-br from-purple-500 to-purple-600';
+                  if (cat === 'Sports & Fitness') return 'bg-gradient-to-br from-green-500 to-green-600';
+                  if (cat === 'Stationery & Office Supplies') return 'bg-gradient-to-br from-yellow-500 to-yellow-600';
                   return 'bg-gradient-to-br from-gray-500 to-gray-600';
+                };
+                
+                const getCategoryIcon = (cat) => {
+                  if (cat === 'Electronics') return (
+                    <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                    </svg>
+                  );
+                  if (cat === 'Fashion') return (
+                    <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  );
+                  if (cat === 'Home & Kitchen') return (
+                    <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                  );
+                  if (cat === 'Beauty & Personal Care') return (
+                    <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  );
+                  if (cat === 'Sports & Fitness') return (
+                    <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  );
+                  if (cat === 'Stationery & Office Supplies') return (
+                    <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  );
+                  return null;
                 };
                 
                 return (
@@ -113,21 +149,7 @@ const Home = () => {
                     className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden"
                   >
                     <div className={`aspect-square ${getCategoryBg(category)} p-6 flex flex-col items-center justify-center`}>
-                      {category === 'Electronics' && (
-                        <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                        </svg>
-                      )}
-                      {category === 'Fashion' && (
-                        <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                      )}
-                      {category === 'Home & Kitchen' && (
-                        <svg className="w-12 h-12 text-white mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                        </svg>
-                      )}
+                      {getCategoryIcon(category)}
                     </div>
                     <div className="p-4">
                       <h3 className="font-bold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors">
@@ -244,6 +266,75 @@ const Home = () => {
             <ProductCarousel 
               title="" 
               products={homeKitchen} 
+              showViewAll={false}
+            />
+          </div>
+        )}
+
+        {/* Beauty & Personal Care Section */}
+        {beauty.length > 0 && (
+          <div className="mb-10">
+            <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">💄 Beauty & Personal Care</h2>
+                <Link 
+                  to="/category/Beauty & Personal Care" 
+                  className="text-primary-600 hover:text-primary-700 text-sm font-semibold"
+                >
+                  See All →
+                </Link>
+              </div>
+              <p className="text-gray-600">Skincare, makeup, and personal care essentials</p>
+            </div>
+            <ProductCarousel 
+              title="" 
+              products={beauty} 
+              showViewAll={false}
+            />
+          </div>
+        )}
+
+        {/* Sports & Fitness Section */}
+        {sports.length > 0 && (
+          <div className="mb-10">
+            <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">💪 Sports & Fitness</h2>
+                <Link 
+                  to="/category/Sports & Fitness" 
+                  className="text-primary-600 hover:text-primary-700 text-sm font-semibold"
+                >
+                  See All →
+                </Link>
+              </div>
+              <p className="text-gray-600">Gym equipment and fitness accessories</p>
+            </div>
+            <ProductCarousel 
+              title="" 
+              products={sports} 
+              showViewAll={false}
+            />
+          </div>
+        )}
+
+        {/* Stationery & Office Supplies Section */}
+        {stationery.length > 0 && (
+          <div className="mb-10">
+            <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">📝 Stationery & Office Supplies</h2>
+                <Link 
+                  to="/category/Stationery & Office Supplies" 
+                  className="text-primary-600 hover:text-primary-700 text-sm font-semibold"
+                >
+                  See All →
+                </Link>
+              </div>
+              <p className="text-gray-600">Notebooks, pens, and office essentials</p>
+            </div>
+            <ProductCarousel 
+              title="" 
+              products={stationery} 
               showViewAll={false}
             />
           </div>
