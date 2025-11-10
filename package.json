@@ -1,0 +1,23 @@
+{
+  "name": "amazkart",
+  "version": "1.0.0",
+  "description": "AmazKart - Full-stack e-commerce application",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run start --prefix client\"",
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "build": "npm run build --prefix client",
+    "seed": "npm run seed --prefix server"
+  },
+  "keywords": [
+    "ecommerce",
+    "react",
+    "nodejs",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+
