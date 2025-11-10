@@ -7,89 +7,77 @@ const ProductCard = ({ product }) => {
 
   const handleAddToCart = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     addItem(product, 1);
   };
 
   return (
-    <Link
-      to={`/product/${product._id}`}
-      className="bg-white rounded-2xl shadow-soft overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col group border border-gray-200/50 hover:border-primary-300 relative"
-    >
-      {/* Shine effect on hover */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 z-10"></div>
-      
-      <div className="relative h-72 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 overflow-hidden">
-        <img
-          src={product.images[0] || 'https://via.placeholder.com/400x300'}
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-          onError={(e) => {
-            e.target.src = 'https://via.placeholder.com/400x300?text=No+Image';
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+    <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden group flex flex-col h-full">
+      <Link to={`/product/${product._id}`} className="flex flex-col flex-1">
+        {/* Image Section */}
+        <div className="relative aspect-square bg-gray-100 overflow-hidden">
+          <img
+            src={product.images[0] || 'https://via.placeholder.com/400x300'}
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            onError={(e) => {
+              e.target.src = 'https://via.placeholder.com/400x300?text=No+Image';
+            }}
+          />
+          
+          {/* Stock Badge */}
+          {product.stock === 0 && (
+            <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">
+              Out of Stock
+            </div>
+          )}
+          {product.stock > 0 && product.stock < 10 && (
+            <div className="absolute top-2 left-2 bg-orange-500 text-white px-2 py-1 rounded text-xs font-bold">
+              Only {product.stock} left
+            </div>
+          )}
+        </div>
         
-        {/* Badges */}
-        {product.stock === 0 && (
-          <div className="absolute top-4 right-4 bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-full text-xs font-black shadow-xl backdrop-blur-sm border-2 border-white/50">
-            Out of Stock
-          </div>
-        )}
-        {product.stock > 0 && product.stock < 10 && (
-          <div className="absolute top-4 left-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-xs font-black shadow-xl backdrop-blur-sm border-2 border-white/50 animate-pulse">
-            ⚡ Only {product.stock} left!
-          </div>
-        )}
-        {product.stock >= 10 && (
-          <div className="absolute top-4 left-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-xs font-black shadow-xl backdrop-blur-sm border-2 border-white/50 opacity-0 group-hover:opacity-100 transition-opacity">
-            ✓ In Stock
-          </div>
-        )}
-      </div>
-      
-      <div className="p-6 flex-1 flex flex-col bg-white">
-        <h3 className="text-xl font-extrabold text-gray-900 mb-3 line-clamp-2 group-hover:text-primary-600 transition-colors duration-300">
-          {product.name}
-        </h3>
-        
-        {product.shortDescription && (
-          <p className="text-gray-600 text-sm mb-5 line-clamp-2 flex-1 leading-relaxed">
-            {product.shortDescription}
-          </p>
-        )}
-        
-        <div className="mt-auto space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <span className="text-3xl font-black bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+        {/* Product Info */}
+        <div className="p-4 flex flex-col flex-1">
+          <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary-600 transition-colors min-h-[3rem]">
+            {product.name}
+          </h3>
+          
+          {/* Price */}
+          <div className="mt-auto">
+            <div className="flex items-baseline gap-2 mb-3">
+              <span className="text-2xl font-bold text-gray-900">
                 ₹{product.price.toLocaleString('en-IN')}
               </span>
             </div>
-            {product.stock > 0 && (
-              <span className="text-xs text-green-700 bg-gradient-to-r from-green-50 to-emerald-50 px-3 py-1.5 rounded-full font-bold border border-green-200">
-                ✓ Available
-              </span>
+            
+            {/* Stock Status */}
+            {product.stock > 0 ? (
+              <div className="flex items-center gap-1 text-xs text-green-600 mb-3">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>In Stock</span>
+              </div>
+            ) : (
+              <div className="text-xs text-red-600 mb-3">Out of Stock</div>
             )}
           </div>
-          
-          <div className="flex gap-3">
-            <Link
-              to={`/product/${product._id}`}
-              className="flex-1 text-center py-3 px-4 border-2 border-primary-600 text-primary-600 rounded-xl hover:bg-primary-600 hover:text-white transition-all duration-300 font-bold text-sm shadow-md hover:shadow-lg transform hover:-translate-y-1"
-            >
-              View Details
-            </Link>
-            <button
-              onClick={handleAddToCart}
-              disabled={product.stock === 0}
-              className="flex-1 py-3 px-4 bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 text-white rounded-xl hover:from-primary-700 hover:via-primary-800 hover:to-primary-900 disabled:from-gray-300 disabled:via-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed transition-all duration-300 font-bold text-sm shadow-lg hover:shadow-glow transform hover:-translate-y-1 hover:scale-105 disabled:transform-none"
-            >
-              🛒 Add to Cart
-            </button>
-          </div>
         </div>
+      </Link>
+      
+      {/* Action Button */}
+      <div className="p-4 pt-0">
+        <button
+          onClick={handleAddToCart}
+          disabled={product.stock === 0}
+          className="w-full py-2.5 bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-lg font-semibold transition-colors text-sm"
+        >
+          {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
+        </button>
       </div>
-    </Link>
+    </div>
   );
 };
 
