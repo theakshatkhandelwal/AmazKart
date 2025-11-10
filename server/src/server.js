@@ -47,10 +47,10 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/api/products', productRoutes);
 
-// Seed endpoint (protected)
-app.post('/api/seed', async (req, res) => {
+// Seed endpoint (protected) - accepts GET requests
+app.get('/api/seed', async (req, res) => {
   try {
-    const seedKey = req.headers['x-seed-key'] || req.query.seedKey;
+    const seedKey = req.query.seedKey || req.headers['x-seed-key'];
     const expectedKey = process.env.SEED_KEY || 'changeme';
 
     if (seedKey !== expectedKey) {
