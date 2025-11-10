@@ -4,7 +4,6 @@ import { getProducts } from '../api/api';
 import ProductCarousel from '../components/ProductCarousel';
 import Loader from '../components/Loader';
 
-// Category images are loaded from public folder
 
 const Home = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -100,39 +99,70 @@ const Home = () => {
                 const categoryProducts = getProductsByCategory(category);
                 if (categoryProducts.length === 0) return null;
                 
-                const getCategoryImage = (cat) => {
-                  // Map category names to image filenames (using hyphenated names)
-                  const imageMap = {
-                    'Electronics': '/electronics.jpg',
-                    'Fashion': '/fashion.jpg',
-                    'Home & Kitchen': '/home-kitchen.jpg',
-                    'Beauty & Personal Care': '/beauty-personal-care.jpg',
-                    'Sports & Fitness': '/sports-fitness.jpg',
-                    'Stationery & Office Supplies': '/office-stationery-supplies.jpg'
-                  };
-                  return imageMap[cat] || '/electronics.jpg';
+                const getCategoryIcon = (cat) => {
+                  if (cat === 'Electronics') {
+                    return (
+                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                      </svg>
+                    );
+                  }
+                  if (cat === 'Fashion') {
+                    return (
+                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                    );
+                  }
+                  if (cat === 'Home & Kitchen') {
+                    return (
+                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                      </svg>
+                    );
+                  }
+                  if (cat === 'Beauty & Personal Care') {
+                    return (
+                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    );
+                  }
+                  if (cat === 'Sports & Fitness') {
+                    return (
+                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    );
+                  }
+                  if (cat === 'Stationery & Office Supplies') {
+                    return (
+                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    );
+                  }
+                  return null;
+                };
+                
+                const getCategoryBg = (cat) => {
+                  if (cat === 'Electronics') return 'bg-gradient-to-br from-blue-500 to-blue-600';
+                  if (cat === 'Fashion') return 'bg-gradient-to-br from-pink-500 to-pink-600';
+                  if (cat === 'Home & Kitchen') return 'bg-gradient-to-br from-orange-500 to-orange-600';
+                  if (cat === 'Beauty & Personal Care') return 'bg-gradient-to-br from-purple-500 to-purple-600';
+                  if (cat === 'Sports & Fitness') return 'bg-gradient-to-br from-green-500 to-green-600';
+                  if (cat === 'Stationery & Office Supplies') return 'bg-gradient-to-br from-yellow-500 to-yellow-600';
+                  return 'bg-gradient-to-br from-gray-500 to-gray-600';
                 };
                 
                 return (
                   <Link
                     key={category}
                     to={`/category/${encodeURIComponent(category)}`}
-                    className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden flex-shrink-0 w-36 sm:w-44"
+                    className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden flex-shrink-0 w-32 sm:w-36"
                   >
-                    <div className="w-full aspect-[4/3] bg-gray-50 overflow-hidden relative">
-                      <img
-                        src={getCategoryImage(category)}
-                        alt={category}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        onError={(e) => {
-                          console.error('Failed to load category image:', getCategoryImage(category), 'for category:', category);
-                          // Keep the image but show error in console
-                          e.target.style.opacity = '0.5';
-                        }}
-                        onLoad={() => {
-                          console.log('Successfully loaded:', getCategoryImage(category));
-                        }}
-                      />
+                    <div className={`w-full aspect-square ${getCategoryBg(category)} flex items-center justify-center p-4 group-hover:scale-105 transition-transform duration-300`}>
+                      {getCategoryIcon(category)}
                     </div>
                     <div className="p-3 text-center">
                       <h3 className="font-semibold text-sm text-gray-900 mb-1 group-hover:text-primary-600 transition-colors line-clamp-2">
