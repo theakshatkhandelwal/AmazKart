@@ -4,6 +4,8 @@ import { getProducts } from '../api/api';
 import ProductCarousel from '../components/ProductCarousel';
 import Loader from '../components/Loader';
 
+// Category images are loaded from public folder
+
 const Home = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -117,17 +119,12 @@ const Home = () => {
                     to={`/category/${encodeURIComponent(category)}`}
                     className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden flex-shrink-0 w-32 sm:w-40"
                   >
-                    <div className="w-full h-24 sm:h-32 bg-gray-100 overflow-hidden">
+                    <div className="w-full h-24 sm:h-32 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden relative">
                       <img
                         src={getCategoryImage(category)}
                         alt={category}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        loading="lazy"
-                        onError={(e) => {
-                          // If image fails to load, show a placeholder
-                          e.target.onerror = null;
-                          e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23e5e7eb" width="100" height="100"/%3E%3Ctext fill="%239ca3af" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3ENo Image%3C/text%3E%3C/svg%3E';
-                        }}
+                        style={{ minHeight: '100%' }}
                       />
                     </div>
                     <div className="p-3 text-center">
