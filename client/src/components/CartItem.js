@@ -33,7 +33,7 @@ const CartItem = ({ item }) => {
           {item.name}
         </h3>
         <p className="text-primary-600 font-bold text-lg mt-1">
-          ${item.price.toFixed(2)}
+          ₹{item.price.toLocaleString('en-IN')}
         </p>
       </div>
       
@@ -55,7 +55,7 @@ const CartItem = ({ item }) => {
         
         <div className="text-right min-w-[80px]">
           <p className="text-lg font-bold text-gray-800">
-            ${(item.price * item.quantity).toFixed(2)}
+            ₹{(item.price * item.quantity).toLocaleString('en-IN')}
           </p>
         </div>
         

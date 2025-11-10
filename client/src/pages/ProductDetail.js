@@ -85,31 +85,31 @@ const ProductDetail = () => {
           <span>Back</span>
         </button>
 
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-8 md:p-12">
             {/* Image Gallery */}
             <div>
-              <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4">
+              <div className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden mb-4 shadow-inner">
                 <img
                   src={product.images[selectedImage] || 'https://via.placeholder.com/600'}
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src = 'https://via.placeholder.com/600?text=No+Image';
                   }}
                 />
               </div>
               {product.images.length > 1 && (
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-4 gap-3">
                   {product.images.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImage(index)}
-                      className={`aspect-square rounded-lg overflow-hidden border-2 ${
+                      className={`aspect-square rounded-xl overflow-hidden border-2 transition-all duration-200 ${
                         selectedImage === index
-                          ? 'border-primary-600'
-                          : 'border-transparent hover:border-gray-300'
-                      } transition-colors`}
+                          ? 'border-primary-600 ring-4 ring-primary-200 shadow-lg scale-105'
+                          : 'border-gray-200 hover:border-primary-300 hover:shadow-md'
+                      }`}
                     >
                       <img
                         src={image}
@@ -127,26 +127,31 @@ const ProductDetail = () => {
 
             {/* Product Info */}
             <div className="flex flex-col">
-              <h1 className="text-4xl font-bold text-gray-800 mb-4">
+              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
                 {product.name}
               </h1>
 
-              <div className="mb-6">
-                <span className="text-4xl font-bold text-primary-600">
-                  ${product.price.toFixed(2)}
+              <div className="mb-6 flex items-baseline gap-3">
+                <span className="text-5xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+                  ₹{product.price.toLocaleString('en-IN')}
                 </span>
+                {product.stock > 0 && (
+                  <span className="text-sm text-green-600 bg-green-50 px-3 py-1 rounded-full font-semibold">
+                    ✓ In Stock
+                  </span>
+                )}
               </div>
 
               {product.category && (
-                <div className="mb-4">
-                  <span className="inline-block px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold">
+                <div className="mb-6">
+                  <span className="inline-block px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 text-primary-800 rounded-full text-sm font-bold shadow-sm">
                     {product.category}
                   </span>
                 </div>
               )}
 
-              <div className="mb-6">
-                <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+              <div className="mb-8">
+                <p className="text-gray-700 leading-relaxed text-lg whitespace-pre-line">
                   {product.description}
                 </p>
               </div>
@@ -188,17 +193,17 @@ const ProductDetail = () => {
                 </div>
               </div>
 
-              <div className="mt-auto space-y-3">
+              <div className="mt-auto space-y-4">
                 <button
                   onClick={handleAddToCart}
                   disabled={product.stock === 0}
-                  className="w-full py-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors font-semibold text-lg"
+                  className="w-full py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-200 font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
                 >
-                  {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
+                  {product.stock > 0 ? '🛒 Add to Cart' : 'Out of Stock'}
                 </button>
                 <button
                   onClick={() => navigate('/cart')}
-                  className="w-full py-4 border-2 border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 transition-colors font-semibold"
+                  className="w-full py-4 border-2 border-primary-600 text-primary-600 rounded-xl hover:bg-primary-50 hover:border-primary-700 transition-all duration-200 font-bold text-lg"
                 >
                   View Cart
                 </button>

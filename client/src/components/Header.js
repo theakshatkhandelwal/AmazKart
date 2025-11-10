@@ -7,11 +7,13 @@ const Header = () => {
   const totalItems = getTotalItems();
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-3">
+    <header className="bg-white shadow-lg sticky top-0 z-50 border-b-2 border-primary-100">
+      <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
-          <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
-            <h1 className="text-2xl font-bold text-primary-600">AmazKart</h1>
+          <Link to="/" className="flex items-center space-x-2 flex-shrink-0 group">
+            <h1 className="text-3xl font-extrabold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent group-hover:from-primary-700 group-hover:to-primary-900 transition-all">
+              AmazKart
+            </h1>
           </Link>
           
           <nav className="flex items-center space-x-4 flex-shrink-0">

@@ -20,12 +20,14 @@ const ProductCarousel = ({ title, products, showViewAll = false }) => {
   }
 
   return (
-    <div className="mb-8">
+    <div className="mb-12">
       {title && (
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold text-gray-800">{title}</h2>
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+            {title}
+          </h2>
           {showViewAll && (
-            <button className="text-primary-600 hover:text-primary-700 font-semibold">
+            <button className="text-primary-600 hover:text-primary-700 font-bold text-lg transition-all hover:translate-x-1">
               View All →
             </button>
           )}
@@ -35,7 +37,7 @@ const ProductCarousel = ({ title, products, showViewAll = false }) => {
       <div className="relative">
         <button
           onClick={() => scroll('left')}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors hidden md:block"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-xl hover:shadow-2xl hover:bg-primary-50 transition-all duration-200 hidden md:flex items-center justify-center border-2 border-gray-100 hover:border-primary-300"
           aria-label="Scroll left"
         >
           <svg
@@ -63,7 +65,7 @@ const ProductCarousel = ({ title, products, showViewAll = false }) => {
 
         <button
           onClick={() => scroll('right')}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors hidden md:block"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-xl hover:shadow-2xl hover:bg-primary-50 transition-all duration-200 hidden md:flex items-center justify-center border-2 border-gray-100 hover:border-primary-300"
           aria-label="Scroll right"
         >
           <svg

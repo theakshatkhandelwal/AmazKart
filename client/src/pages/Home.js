@@ -63,20 +63,20 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Search Section */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="container mx-auto px-4 py-6">
+      <div className="bg-gradient-to-r from-primary-600 to-primary-700 shadow-lg">
+        <div className="container mx-auto px-4 py-8">
           <form onSubmit={handleSearch} className="max-w-3xl mx-auto">
-            <div className="flex gap-2">
+            <div className="flex gap-3 shadow-xl rounded-xl overflow-hidden">
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search for Products, Brands and More"
-                className="flex-1 px-6 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-lg"
+                className="flex-1 px-6 py-4 border-0 focus:outline-none text-lg bg-white"
               />
               <button
                 type="submit"
-                className="px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-semibold"
+                className="px-10 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white hover:from-yellow-500 hover:to-orange-600 transition-all duration-200 font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Search
               </button>
@@ -85,7 +85,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 py-8">
         {/* Error Message */}
         {error && allProducts.length === 0 && (
           <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
